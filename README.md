@@ -1,4 +1,3 @@
-# Code Samples
-## Abhishek Joshi
+## Abhishek Joshi - Code Samples
 
 ### Projects:
