@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row">
+		<div class="col s12" ng-controller="MiscController as misc">
+			<a ui-sref="post-create({ topicId: topic.topic.id })" ng-if="misc.isAuthenticated()" class="btn right orange darken-2 waves-effect waves-light">Post Reply</a>
+		</div>	
+	</div>
+	<div infinite-scroll="topic.getTopicDetails()" infinite-scroll-distance="1" infinite-scroll-disabled="topic.scrollDisabled">
+		<div class="row postbox" ng-repeat="post in topic.posts | filter:topic.searchQuery.data">
+			<div class="col s12">
+				<div class="card-panel z-depth-1">
+					<div class="row postbox">
+						<div class="col s2">
+							<img src="images/male.png" class="circle centered" height="80" width="80">
+							<h5 class="row center">{{ post.user.name }}</h5>
+							<div class="row postbox">
+								<span class="col s6 right-align">Joined: </span>
+								<span class="col s6 no-left-padding">{{ post.user.created_at | join_date }}</span>
+							</div>
+							<div class="row postbox">
+								<span class="col s6 right-align">Posts: </span>
+								<span class="col s6 no-left-padding">{{ post.user.posts_count.aggregate }}</span>
+							</div>
+						</div>
+						<div class="col s10 post-content-box">
+							<div class="row postbox">
+								<span class="col s11">Posted: {{ post.created_at }}</span>
+								<span class="col s1 right-align post-count">#{{ $index+1 }}</span>
+							</div>
+							<div class="divider"></div>
+							<p>
+								{{ post.content }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

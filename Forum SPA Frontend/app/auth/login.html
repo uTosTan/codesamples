@@ -1,0 +1,28 @@
+<div class="container">
+	<h4 class="center">Login</h4>
+	<form ng-submit="auth.login()">
+		<div class="row">
+			<div class="input-field col s4 offset-s4">
+				<div class="card-panel red darken-1" ng-if="auth.error">
+					<span class="white-text">Invalid Username or Password</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s4 offset-s4">
+
+				<input id="email" type="email" class="validate" ng-model="auth.email">
+				<label for="email" class="">Email</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s4 offset-s4">
+				<input id="password" type="password" class="validate" ng-model="auth.password">
+				<label for="password">Password</label>
+			</div>
+		</div>
+		<div class="row center">
+			<button class="btn-large waves-effect waves-light light-blue darken-2" type="submit">LOGIN</button>
+		</div>
+	</form>
+</div>

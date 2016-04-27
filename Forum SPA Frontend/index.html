@@ -1,0 +1,84 @@
+<!doctype html>
+	<html lang="en" ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>Forum</title>
+		<!-- CSS Files -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="css/materialize.min.css">
+		<link rel="stylesheet" href="css/site.css">
+
+		<!-- Vendor Files -->
+		<script src="js/lib/jquery/jquery-2.2.3.min.js"></script>
+		<script src="js/lib/angular/angular.min.js"></script>
+		<script src="js/lib/angular/angular-route.min.js"></script>
+		<script src="js/lib/angular/angular-ui-router.min.js"></script>
+		<script src="js/lib/angular/angular-animate.min.js"></script>
+		<script src="js/lib/restmod/angular-restmod-bundle.min.js"></script>
+		<script src="js/lib/restmod/plugins/paged.min.js"></script>
+		<script src="js/lib/restmod/styles/ams.min.js"></script>
+		<script src="js/lib/satellizer/satellizer.min.js"></script>
+		<script src="js/lib/ng-infinite-scroll/ng-infinite-scroll.min.js"></script>
+		<script src="js/lib/date/date.js"></script>
+		<script src="js/lib/materialize/materialize.min.js"></script>
+		<script src="js/lib/angular-materialize/angular-materialize.js"></script>
+
+		<!-- Angular Includes -->
+		<!-- App Files -->
+		<script src="app/app.module.js"></script>
+		<script src="app/app.config.js"></script>
+		<!-- Topic Files -->
+		<script src="app/topics/topic.controller.js"></script>
+		<script src="app/topics/topic.route.js"></script>
+		<script src="app/topics/topic-detail.controller.js"></script>
+		<script src="app/topics/topic-detail.route.js"></script>
+		<script src="app/topics/topic-create.controller.js"></script>
+		<script src="app/topics/topic-create.route.js"></script>
+		<script src="app/posts/post-create.controller.js"></script>
+		<script src="app/posts/post-create.route.js"></script>
+		<!-- Auth Files -->
+		<script src="app/auth/auth.controller.js"></script>
+		<script src="app/auth/auth.route.js"></script>
+		<!-- Shared Files -->
+		<script src="app/shared/misc.controller.js"></script>
+		<!-- Filter Files -->
+		<script src="app/filters/date-parse.filter.js"></script>
+		<script src="app/filters/join-date.filter.js"></script>
+		<!-- Service Files -->
+		<script src="app/services/topic.service.js"></script>
+		<script src="app/services/post.service.js"></script>
+		<script src="app/services/user.service.js"></script>
+		<script src="app/services/search-query.service.js"></script>
+
+		<script src="js/site.js"></script>
+
+	</head>
+	<body>
+		<nav class="red lighten-2" ng-controller="MiscController as misc">
+			<div class="nav-wrapper container">
+				<a ui-sref="topics" class="brand-logo">Cloud App Forum</a>
+				<a href="#" data-activates="mobile-demo" class="button-collapse" data-sizenav="left" data-menuwidth="500" data-closeonclick="false"><i class="material-icons">menu</i></a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li ng-if="!misc.isAuthenticated()"><a ui-sref="signup">Sign Up</a></li>
+					<li ng-if="!misc.isAuthenticated()"><a ui-sref="login">Login</a></li>
+					<li ng-if="misc.isAuthenticated()">Welcome, {{ misc.payload().name }}!</li>
+					<li ng-if="misc.isAuthenticated()"><a ng-click="misc.logout()">Logout</a></li>
+				</ul>
+				<ul class="side-nav" id="mobile-demo">
+					<li ng-if="!misc.isAuthenticated()"><a ui-sref="signup">Sign Up</a></li>
+					<li ng-if="!misc.isAuthenticated()"><a ui-sref="login">Login</a></li>
+					<li ng-if="misc.isAuthenticated()">Welcome, {{ misc.payload().name }}!</li>
+					<li ng-if="misc.isAuthenticated()"><a ng-click="misc.logout()">Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+		<br><br>
+		<div class="container">
+			<div ui-view="breadcrumbs"></div>
+		</div>
+		<div class="view-container">
+			<div ui-view="main" class="view-frame"></div>
+		</div>
+
+	</body>
+</html>

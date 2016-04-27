@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="row">
+		<div class="col s12" ng-controller="MiscController as misc">
+			<a ui-sref="topic-create" ng-if="misc.isAuthenticated()" class="btn right orange darken-2 waves-effect waves-light">Create Topic</a>
+		</div>	
+	</div>
+	<div infinite-scroll="topic.getTopics()" infinite-scroll-distance="1" infinite-scroll-disabled="topic.scrollDisabled">
+		<ul class="collection">
+			<li class="collection-item avatar topic-listing" ng-repeat="topic in topic.topics | filter:topic.searchQuery.data">
+				<i class="material-icons circle">label</i>
+				<span class="title"><a ui-sref="topic({ topicId: topic.id })">{{ topic.title }}</a></span>
+				<p>
+					{{ topic.user.name }}<br>
+					{{ topic.created_at | date_parse }}
+				</p>
+				<span class="badge secondary-content post-count">{{ topic.posts_count.aggregate }} posts</span>
+			</li>
+		</ul>
+	</div>
+</div>
